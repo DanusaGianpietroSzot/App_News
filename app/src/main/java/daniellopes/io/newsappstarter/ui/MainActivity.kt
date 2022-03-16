@@ -1,7 +1,5 @@
 package daniellopes.io.newsappstarter.ui
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -29,34 +27,36 @@ class MainActivity : AbstractActivity(), ViewHome.View {
         val dataSource = NewsDataSource()
         presenter = NewsPresenter(this, dataSource)
         presenter.requestAll()
-       // configRecycle()
+        configRecycle()
     }
 
-//    private fun configRecycle() {
-//        with(rvNews){
-//            adapter = mainAdapter
-//            layoutManager = LinearLayoutManager(this@MainActivity)
-//            addItemDecoration(
-//                DividerItemDecoration(
-//                this@MainActivity, DividerItemDecoration.VERTICAL
-//            ))
-//        }
-//    }
+    private fun configRecycle() {
+        with(rvNews){
+            adapter = mainAdapter
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            addItemDecoration(
+                DividerItemDecoration(
+                this@MainActivity, DividerItemDecoration.VERTICAL
+            )
+            )
+        }
+    }
 
     override fun showProgressBar() {
-       // rvProgressBar.visibility = View.VISIBLE
+       rvProgressBar.visibility = View.VISIBLE
     }
 
     override fun showFailure(message: String) {
-       // Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+       Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     override fun hideProgressBar() {
-        //rvProgressBar.visibility = View.INVISIBLE
+        rvProgressBar.visibility = View.INVISIBLE
     }
 
     override fun showArticles(articles: List<Article>) {
-      //  mainAdapter.differ.submitList(articles.toList())
+        Toast.makeText(this, "Deu certo!", Toast.LENGTH_LONG).show()
+        mainAdapter.differ.submitList(articles.toList())
     }
 
 }

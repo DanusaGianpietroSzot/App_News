@@ -1,5 +1,6 @@
 package daniellopes.io.newsappstarter.model.data
 
+import daniellopes.io.newsappstarter.model.NewsResponse
 import daniellopes.io.newsappstarter.network.RetrofitInstance
 import daniellopes.io.newsappstarter.presenter.news.NewsHome
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +13,7 @@ class NewsDataSource {
         GlobalScope.launch(Dispatchers.Main) {
             val response = RetrofitInstance.api.getBreakingNews("br")
             if(response.isSuccessful){
-                response.body()?.let { newsResponse ->
+                response.body()?.let { newsResponse: NewsResponse ->
                     callback.onSucess(newsResponse)
                 }
                 callback.onComplete()
